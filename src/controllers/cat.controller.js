@@ -4,7 +4,7 @@ const path = require('path');
 
 // get cats html page
 exports.getCatPage = async function (req, res, next) {
-  res.sendFile(path.join(viewFolder + '/cat.html'));
+  res.sendFile(path.join(viewFolder + '/html/cat.html'));
 }
 
 // get all cats
