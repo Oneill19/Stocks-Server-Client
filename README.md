@@ -12,6 +12,7 @@
 - [Table of Content](#table-of-content)
 - [Description](#description)
 - [Usage](#usage)
+- [File Generation](#file-generation)
 - [.env file](#env-file)
 
 ## Description
@@ -46,6 +47,17 @@ To start the app in developer mode with hot reload:
 ```
 npm run start:dev
 ```
+
+## File Generation
+
+There is an option to generate a `html`, `css`, and `js` file from a template including all imports in the `html` file for `jQuery` and `Bootstrap`.
+
+For example, use the command:
+```
+npm run generate login
+```
+
+This command will create `login.html`, `login.css`, and `login.js` files in the `views` folder.
 
 ## .env file
 Create a file in the root folder named `.env`

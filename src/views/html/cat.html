@@ -13,22 +13,48 @@
 		<title>Cat</title>
 	</head>
 	<body>
-		<h1 class="text-center">I'm a Cat!</h1>
-		<img src="views/assets/cat/rainbow-cat.jpg" alt="rainbow-cat" width="100%"/>
+		<div
+			class="d-flex flex-column justify-content-center align-items-center"
+			style="height: 100dvh"
+		>
+			<h1 class="text-center">I'm a Cat!</h1>
+			<img src="views/assets/cat/rainbow-cat.jpg" alt="rainbow-cat" />
+		</div>
 
-    <div class="d-flex justify-content-center my-2">
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="button" class="btn btn-secondary">Secondary</button>
-      <button type="button" class="btn btn-success">Success</button>
-      <button type="button" class="btn btn-danger">Danger</button>
-      <button type="button" class="btn btn-warning">Warning</button>
-      <button type="button" class="btn btn-info">Info</button>
-      <button type="button" class="btn btn-light">Light</button>
-      <button type="button" class="btn btn-dark">Dark</button>
-      <button type="button" class="btn btn-link">Link</button>
-    </div>
+		<div>
+			<canvas id="myChart" width="100%"></canvas>
+		</div>
 
 		<!-- Bootstrap js file -->
 		<script src="views/javascript/bootstrap.bundle.min.js"></script>
+
+		<!-- jQuery js file -->
+		<script src="views/javascript/jquery-3.7.0.min.js"></script>
+
+		<!-- chartjs js file -->
+		<script src="views/javascript/chart.umd.min.js"></script>
+
+		<script>
+			const ctx = document.getElementById('myChart');
+		
+			new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ['Red Cat', 'Blue Cat', 'Yellow Cat', 'Green Cat', 'Purple Cat', 'Orange Cat'],
+					datasets: [{
+						label: '# of Votes',
+						data: [12, 19, 3, 5, 2, 3],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+		</script>
 	</body>
 </html>
