@@ -1,0 +1,29 @@
+{
+  "name": "stocks-server-client",
+  "version": "0.0.0",
+  "description": "stocks website for server client academic course",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oneill19/Stocks-Server-Client.git"
+  },
+  "author": "Oneill19",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Oneill19/Stocks-Server-Client/issues"
+  },
+  "homepage": "https://github.com/Oneill19/Stocks-Server-Client#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.5.0",
+    "mongoose": "^7.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
