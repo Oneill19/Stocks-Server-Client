@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "start:dev": "cross-env NODE_ENV=dev nodemon src/index.js",
-    "generate": "node generate.js"
+    "dev": "cross-env NODE_ENV=dev nodemon src/index.js",
+    "gn": "node generate.js"
   },
   "repository": {
     "type": "git",

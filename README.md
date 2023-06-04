@@ -45,7 +45,7 @@ npm start
 
 To start the app in developer mode with hot reload:
 ```
-npm run start:dev
+npm run dev
 ```
 
 ## File Generation
@@ -54,7 +54,7 @@ There is an option to generate a `html`, `css`, and `js` file from a template in
 
 For example, use the command:
 ```
-npm run generate login
+npm run gn login
 ```
 
 This command will create `login.html`, `login.css`, and `login.js` files in the `views` folder.
