@@ -5,8 +5,10 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const cat = require('./routes/cat.router');
 const errorHandler = require('./controllers/error.controller').errorHandle;
+
+// middlewares
+const cat = require('./routes/cat.router');
 
 const app = express();
 
