@@ -59,7 +59,8 @@ app.use('/error', error);
 // cat middlewares
 app.use('/cat', cat);
 
-app.use('/', (req, res) => res.redirect('/sign-in'));
+// on start go to sign-in page
+app.get('/', (req, res) => res.redirect('/sign-in'));
 
 // default page
 app.get('*', (req, res) => res.redirect('/error'));
