@@ -9,6 +9,8 @@ const errorHandler = require('./controllers/error.controller').errorHandle;
 
 // middlewares
 const cat = require('./routes/cat.router');
+const signIn = require('./routes/sign-in.router');
+const error = require('./routes/error.router');
 
 const app = express();
 
@@ -48,11 +50,17 @@ app.use('/views', express.static(__dirname + '/views'));
 // ping request to check if site is up
 app.get('/ping', (req, res) => { res.send('PONG') });
 
+// sign-in middlewares
+app.use('/sign-in', signIn);
+
+// error middlewares
+app.use('/error', error);
+
 // cat middlewares
 app.use('/cat', cat);
 
 // default page
-app.get('*', (req, res) => res.redirect('/cat'));
+app.get('*', (req, res) => res.redirect('/error'));
 
 // error handler
 app.use(errorHandler);
