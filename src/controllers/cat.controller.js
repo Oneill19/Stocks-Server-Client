@@ -4,7 +4,11 @@ const path = require('path');
 
 // get cats html page
 exports.getCatPage = async function (req, res, next) {
-  res.sendFile(path.join(viewFolder + '/html/cat.html'));
+  try {
+    return res.sendFile(path.join(viewFolder + '/html/cat.html'));
+  } catch (err) {
+    next(err);
+  }
 }
 
 // get all cats
