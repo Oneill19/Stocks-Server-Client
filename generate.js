@@ -93,8 +93,8 @@ async function linkRoutes() {
 }
 
 async function main() {
-	// await generateFrontend();
-	// await generateBackend();
+	await generateFrontend();
+	await generateBackend();
 	await linkRoutes();
 }
 
