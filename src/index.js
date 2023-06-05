@@ -8,9 +8,9 @@ const path = require('path');
 const errorHandler = require('./controllers/error.controller').errorHandle;
 
 // middlewares
-const cat = require('./routes/cat.router');
 const signIn = require('./routes/sign-in.router');
 const error = require('./routes/error.router');
+const cat = require('./routes/cat.router');
 
 const app = express();
 
@@ -53,11 +53,11 @@ app.get('/ping', (req, res) => { res.send('PONG') });
 // sign-in middlewares
 app.use('/sign-in', signIn);
 
-// error middlewares
-app.use('/error', error);
-
 // cat middlewares
 app.use('/cat', cat);
+
+// error middlewares
+app.use('/error', error);
 
 // on start go to sign-in page
 app.get('/', (req, res) => res.redirect('/sign-in'));
