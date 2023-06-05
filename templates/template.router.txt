@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const {{utitle}}Controller = require('../controllers/{{title}}.controller');
+
+/**
+ * @route /{{title}}
+ * @method GET
+ * @description get the {{title}} html page
+ */
+router.get('/', {{utitle}}Controller.get{{cutitle}}Page);
+
+module.exports = router;

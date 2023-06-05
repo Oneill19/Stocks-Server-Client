@@ -12,7 +12,7 @@
 - [Table of Content](#table-of-content)
 - [Description](#description)
 - [Usage](#usage)
-- [File Generation](#file-generation)
+- [Page Generation](#page-generation)
 - [.env file](#env-file)
 
 ## Description
@@ -48,16 +48,26 @@ To start the app in developer mode with hot reload:
 npm run dev
 ```
 
-## File Generation
+## Page Generation
 
-There is an option to generate a `html`, `css`, and `js` file from a template including all imports in the `html` file for `jQuery` and `Bootstrap`.
+This will generate the frontend and the backend to add a new page to the application.
+
+**Frontend**: Generate a `html`, `css`, and `js` file from a template including all imports in the `html` file for `jQuery` and `Bootstrap`.
+
+**Backend**: Generate a `controller` and a `router` file from a template including the basic page route.
+
+**index.js**: Generate a link to the page `router.js` file.
 
 For example, use the command:
 ```
 npm run generate login
 ```
 
-This command will create `login.html`, `login.css`, and `login.js` files in the `views` folder.
+This command will create:
+  - `login.html`, `login.css`, and `login.js` files in the `views` folder.
+  - `login.controller.js`, `login.router.js` files in the `controllers` and `routes` folders.
+  - add the route link to the new page in the `index.js` file.
+
 
 ## .env file
 Create a file in the root folder named `.env`

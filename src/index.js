@@ -9,8 +9,8 @@ const errorHandler = require('./controllers/error.controller').errorHandle;
 
 // middlewares
 const signIn = require('./routes/sign-in.router');
-const error = require('./routes/error.router');
 const cat = require('./routes/cat.router');
+const error = require('./routes/error.router');
 
 const app = express();
 

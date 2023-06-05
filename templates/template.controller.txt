@@ -1,0 +1,10 @@
+const viewFolder = require('../views/path').viewFolder;
+const path = require('path');
+
+exports.get{{cutitle}}Page = async function (req, res, next) {
+  try {
+    return res.sendFile(path.join(viewFolder + '/html/{{title}}.html'));
+  } catch (err) {
+    next(err);
+  }
+}
