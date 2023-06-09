@@ -9,6 +9,7 @@ const errorHandler = require('./controllers/error.controller').errorHandle;
 
 // middlewares
 const signIn = require('./routes/sign-in.router');
+const register = require('./routes/register.router');
 const cat = require('./routes/cat.router');
 const error = require('./routes/error.router');
 
@@ -52,6 +53,9 @@ app.get('/ping', (req, res) => { res.send('PONG') });
 
 // sign-in middlewares
 app.use('/sign-in', signIn);
+
+// register middleware
+app.use('/register', register);
 
 // cat middlewares
 app.use('/cat', cat);
