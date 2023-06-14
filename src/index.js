@@ -10,6 +10,7 @@ const errorHandler = require('./controllers/error.controller').errorHandle;
 // middlewares
 const signIn = require('./routes/sign-in.router');
 const register = require('./routes/register.router');
+const dashboard = require('./routes/dashboard.router');
 const cat = require('./routes/cat.router');
 const error = require('./routes/error.router');
 
@@ -42,6 +43,9 @@ const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('connected to db'));
 
+// Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
 // parse data to json
 app.use(express.json());
 
@@ -56,6 +60,9 @@ app.use('/sign-in', signIn);
 
 // register middleware
 app.use('/register', register);
+
+// dashboard middleware
+app.use('/dashboard', dashboard);
 
 // cat middlewares
 app.use('/cat', cat);
