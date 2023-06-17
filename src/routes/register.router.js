@@ -9,4 +9,11 @@ const registerController = require('../controllers/register.controller');
  */
 router.get('/', registerController.getRegisterPage);
 
+/**
+ * @route /sign-in
+ * @method POST
+ * @description sign-in a user
+ */
+router.post('/', registerController.signIn);
+
 module.exports = router;
