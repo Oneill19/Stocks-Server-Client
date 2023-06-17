@@ -17,7 +17,7 @@ const error = require('./routes/error.router');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const DB_URL = process.env.DB_URL || 'mongodb://127.0.0.1:27017/stocks';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/stocks';
 const NODE_ENV = process.env.NODE_ENV || 'production';
 
 // website hot reload on local
@@ -38,7 +38,7 @@ if (NODE_ENV === 'dev') {
 }
 
 // database connection
-mongoose.connect(DB_URL);
+mongoose.connect(MONGO_URI);
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('connected to db'));
