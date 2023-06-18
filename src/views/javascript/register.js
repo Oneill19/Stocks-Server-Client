@@ -25,7 +25,6 @@ $(document).ready(function () {
 
 $('#register').click((e) => {
   e.preventDefault();
-
   const firstName = $('#first').val();
   const lastName = $('#last').val();
   const email = $('#email').val();
@@ -48,9 +47,11 @@ $('#register').click((e) => {
     },
     success: (res) => {
       if (res.response === 'OK') {
-        sessionStorage.setItem('email', res.email);
-        sessionStorage.setItem('favorites', res.favorites);
-        window.location.href = '/dashboard';
+        // show success message with data sent from backend
+        alert(res.email + ' has been registered successfully!');
+
+
+        window.location.href = '/sign-in';
       }
     },
   });

@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const registerController = require('../controllers/register.controller');
+const signInController = require('../controllers/sign-in.controller');
+const { signIn } = require('../controllers/sign-in.controller');
+const viewFolder = require('../views/path').viewFolder;
 
 /**
  * @route /register
@@ -10,10 +13,10 @@ const registerController = require('../controllers/register.controller');
 router.get('/', registerController.getRegisterPage);
 
 /**
- * @route /sign-in
+ * @route /register
  * @method POST
- * @description sign-in a user
+ * @description register a user
  */
-router.post('/', registerController.signIn);
+router.post('/', registerController.register);
 
 module.exports = router;
