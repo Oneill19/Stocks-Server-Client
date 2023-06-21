@@ -34,7 +34,19 @@ $(document).ready(function () {
   const loginButton = $('#sign-in');
 
   function validateInputs() {
-    if (emailField.val() !== '' && passwordField.val() !== '') {
+    let passwordVal = passwordField.val();
+    let emailVal = emailField.val();
+
+    let isEmailValid = /^\S+@\S+\.\S+$/.test(emailVal);
+    let hasUpperCase = /[A-Z]/.test(passwordVal);
+    let hasLowerCase = /[a-z]/.test(passwordVal);
+    let hasNumbers = /\d/.test(passwordVal);
+    let hasNonalphas = /\W/.test(passwordVal);
+    let isLengthValid = passwordVal.length >= 6;
+
+    console.log({ isEmailValid, hasUpperCase, hasLowerCase, hasNumbers, hasNonalphas, isLengthValid })
+
+    if (emailVal !== '' && passwordVal !== '' && isEmailValid && hasUpperCase && hasLowerCase && hasNumbers && hasNonalphas && isLengthValid) {
       loginButton.removeClass('disabled');
     } else {
       loginButton.addClass('disabled');
