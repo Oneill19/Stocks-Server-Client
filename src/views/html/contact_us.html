@@ -16,25 +16,80 @@
 
     <!-- Style css file -->
     <link rel="stylesheet" href="views/css/contact_us.css">
+
 		<title>contact_us</title>
 	</head>
-	<body>
-  
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <h1 class="text-center">I'm a contact_us!</h1>
-      <img src="views/assets/cat/rainbow-cat.jpg" alt="rainbow-cat"/>
-    </div>
+	<body class="bg-gradient-primary">
+		<div class="container">
+			<!-- Outer Row -->
+			<div class="row justify-content-center">
+				<div class="col-xl-10 col-lg-12 col-md-9">
+					<div class="card o-hidden border-0 shadow-lg my-5">
+						<div class="card-body p-0">
+							<!-- Nested Row within Card Body -->
+							<div class="row">
+								<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+								<div class="col-lg-6">
+									<div class="p-5">
+										<div class="text-center">
+											<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+										</div>
+										<form class="user">
+											<div class="form-group">
+												<input
+													type="text"
+													class="form-control form-control-user"
+													id="name"
+													placeholder="Enter your name"
+												/>
+											</div>
+											<div class="form-group">
+												<input 
+												type="email" 
+												class="form-control form-control-user" 
+												id="email"
+												placeholder="Email Address"
+												/>
+											</div>
+											<!--implement here selection box-->
+											<div class="dropdown no-arrow mb-4">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Dropdown (no arrow)
+												</button>
+												<div class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
+													<a class="dropdown-item" href="#">Action</a>
+													<a class="dropdown-item" href="#">Another action</a>
+													<a class="dropdown-item" href="#">Something else here</a>
+												</div>
+											</div>
+											<!--implement here combo box box-->
+											<div class="form-group">
+												<textarea
+													class="form-control form-control-user"
+													id="message"
+													placeholder="Message"
+												></textarea>
+											</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- Bootstrap js file -->
 		<script src="views/javascript/bootstrap.bundle.min.js"></script>
 
-    <!-- jQuery js file -->
-    <script src="views/javascript/jquery-3.7.0.min.js"></script>
+		<!-- jQuery js file -->
+		<script src="views/javascript/jquery-3.7.0.min.js"></script>
 
 		<!-- template js file -->
 		<script src="views/javascript/sb-admin-2.js"></script>
 
-    <!-- Javascript file -->
-    <script src="views/javascript/contact_us.js"></script>
+		<!-- Javascript file -->
+		<script src="views/javascript/sign-in.js"></script>
+
 	</body>
 </html>
