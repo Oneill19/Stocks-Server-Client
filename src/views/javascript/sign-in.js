@@ -81,7 +81,11 @@ $('#sign-in').click((e) => {
       window.location.href = '/dashboard';
     },
     error: (jqXHR, textStatus, errorThrown) => {
-      window.alert(jqXHR.responseJSON.error);
+      if (jqXHR?.responseJSON) {
+        window.alert(jqXHR.responseJSON.error);
+      } else {
+        window.alert('Error!');
+      }
     },
   });
 });
