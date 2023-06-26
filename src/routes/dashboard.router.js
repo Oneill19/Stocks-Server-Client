@@ -9,4 +9,39 @@ const dashboardController = require('../controllers/dashboard.controller');
  */
 router.get('/', dashboardController.getDashboardPage);
 
+/**
+ * @route /dashboard/day/:symbol
+ * @method GET
+ * @description get info about a symbol of the day
+ */
+router.get('/day/:symbol', dashboardController.getDaySymbolData);
+
+/**
+ * @route /dashboard/month/:symbol
+ * @method GET
+ * @description get info about a symbol of the month
+ */
+router.get('/month/:symbol', dashboardController.getMonthSymbolData);
+
+/**
+ * @route /dashboard/year/:symbol
+ * @method GET
+ * @description get info about a symbol of the year
+ */
+router.get('/year/:symbol', dashboardController.getYearSymbolData);
+
+/**
+ * @route /dashboard/favorites/add/:token
+ * @method PATCH
+ * @description add a symbol to favorites
+ */
+router.patch('/favorites/add/:uuid', dashboardController.addToFavorites);
+
+/**
+ * @route /dashboard/favorites/remove/:token
+ * @method PATCH
+ * @description remove symbol from favorites
+ */
+router.patch('/favorites/remove/:uuid', dashboardController.removeFromFavorites);
+
 module.exports = router;

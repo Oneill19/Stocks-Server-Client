@@ -44,8 +44,6 @@ $(document).ready(function () {
     let hasNonalphas = /\W/.test(passwordVal);
     let isLengthValid = passwordVal.length >= 6;
 
-    console.log({ isEmailValid, hasUpperCase, hasLowerCase, hasNumbers, hasNonalphas, isLengthValid })
-
     if (emailVal !== '' && passwordVal !== '' && isEmailValid && hasUpperCase && hasLowerCase && hasNumbers && hasNonalphas && isLengthValid) {
       loginButton.removeClass('disabled');
     } else {
@@ -83,7 +81,11 @@ $('#sign-in').click((e) => {
       window.location.href = '/dashboard';
     },
     error: (jqXHR, textStatus, errorThrown) => {
-      window.alert(jqXHR.responseJSON.error);
+      if (jqXHR?.responseJSON) {
+        window.alert(jqXHR.responseJSON.error);
+      } else {
+        window.alert('Error!');
+      }
     },
   });
 });

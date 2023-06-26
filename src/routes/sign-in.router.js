@@ -23,9 +23,4 @@ router.post('/', signInController.signIn);
  */
 router.post('/authenticate', signInController.authenticate);
 
-/**
- * postman registration for tests
- */
-router.post('/test', signInController.register);
-
 module.exports = router;

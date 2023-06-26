@@ -25,43 +25,14 @@
 			<img src="views/assets/cat/rainbow-cat.jpg" alt="rainbow-cat" />
 		</div>
 
-		<div>
-			<canvas id="myChart" width="100%"></canvas>
-		</div>
-
 		<!-- Bootstrap js file -->
 		<script src="views/javascript/bootstrap.bundle.min.js"></script>
 
 		<!-- jQuery js file -->
 		<script src="views/javascript/jquery-3.7.0.min.js"></script>
 
-		<!-- chartjs js file -->
-		<script src="views/javascript/chart.umd.min.js"></script>
-
 		<!-- template js file -->
 		<script src="views/javascript/sb-admin-2.js"></script>
 
-		<script>
-			const ctx = document.getElementById('myChart');
-		
-			new Chart(ctx, {
-				type: 'bar',
-				data: {
-					labels: ['Red Cat', 'Blue Cat', 'Yellow Cat', 'Green Cat', 'Purple Cat', 'Orange Cat'],
-					datasets: [{
-						label: '# of Votes',
-						data: [12, 19, 3, 5, 2, 3],
-						borderWidth: 1
-					}]
-				},
-				options: {
-					scales: {
-						y: {
-							beginAtZero: true
-						}
-					}
-				}
-			});
-		</script>
 	</body>
 </html>
