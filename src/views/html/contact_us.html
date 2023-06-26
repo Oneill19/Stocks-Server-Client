@@ -49,18 +49,21 @@
 												class="form-control form-control-user" 
 												id="email"
 												placeholder="Email Address"
+												required
 												/>
 											</div>
 											<!--implement here selection box-->
-											<div class="dropdown no-arrow mb-4">
-												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													Dropdown (no arrow)
-												</button>
-												<div class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
-													<a class="dropdown-item" href="#">Action</a>
-													<a class="dropdown-item" href="#">Another action</a>
-													<a class="dropdown-item" href="#">Something else here</a>
-												</div>
+											<div class="form-group">
+													<select name="dataTable_length" 
+													aria-controls="dataTable" 
+													class="custom-select custom-select-sm form-control form-control-sm"
+													id="drop-down">
+													<option value="" disabled selected>Contact us concerning:</option>
+													<option value="General Inquiry">General Inquiry</option>
+													<option value="Technical Support">Technical Support</option>
+													<option value="Billing">Billing</option>
+													<option value="Other">Other</option>
+												</select>
 											</div>
 											<!--implement here combo box box-->
 											<div class="form-group">
@@ -70,6 +73,18 @@
 													placeholder="Message"
 												></textarea>
 											</div>
+											<a 
+												id="submit" 
+												class="btn btn-primary btn-user btn-block disabled"> 
+												Submit
+											</a>
+
+											<a 
+												id="support" 
+												class="btn btn-primary btn-user btn-block"
+												href="mailto:oneilldorin@gmail.com"> 
+												Contact Support
+											</a>
 									</div>
 								</div>
 							</div>
@@ -89,7 +104,7 @@
 		<script src="views/javascript/sb-admin-2.js"></script>
 
 		<!-- Javascript file -->
-		<script src="views/javascript/sign-in.js"></script>
+		<script src="views/javascript/contact_us.js"></script>
 
 	</body>
 </html>
