@@ -3,6 +3,15 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 require('dotenv').config()
 
+exports.postMailTo = async function (req, res, next) {
+  try{
+    // open mailto with mail env.ADMIN_EMAIL
+    return res.redirect(`mailto:${process.env.ADMIN_EMAIL}`);
+  } catch(err){
+    next(err);
+  }
+}
+
 exports.getContact_usPage = async function (req, res, next) {
   try {
     return res.sendFile(path.join(viewFolder + '/html/contact_us.html'));

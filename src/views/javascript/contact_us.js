@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   //prevent from submitting empty form
   try{
@@ -21,6 +22,24 @@ $(document).ready(function () {
     console.log(err);
   }
   });
+
+  // when 'support' is clicked than email opens with the address for "env.ADMIN_EMAIL"
+  // $('#support').click((e) => {
+  //   e.preventDefault();
+    
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '/contact_us/mailto',
+  //     success: (res) => {
+  //       console.log(res);
+  //       alert('Message sent successfully');
+  //       window.location.href = '/contact-us';
+  //     },
+  //     error:(jqXHR, textStatus, errorThrown) => {
+  //       // alert(jqXHR.responseJSON.error); 
+  //     },
+  //   });
+  // });
 
   $('#submit').click((e) => {
     // validate inputs before sending request

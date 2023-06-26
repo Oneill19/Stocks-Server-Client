@@ -16,4 +16,12 @@ router.get('/', contact_usController.getContact_usPage);
  */
 router.post('/', contact_usController.postSubmitPage)
 
+/**
+ * @route /contact_us/mailto
+ * @method POST
+ * @description open a mailto dialog
+ */
+router.post('/mailto', contact_usController.postMailTo);
+
+
 module.exports = router;
