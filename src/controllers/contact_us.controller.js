@@ -44,7 +44,8 @@ exports.postSubmitPage = async function (req, res, next) {
         console.log('Email sent: ' + info.response);
       }
     });
-
+    // return res ok
+    return res.status(200).json({message: 'Message sent successfully'});
 
   }catch(err){
     next(err);

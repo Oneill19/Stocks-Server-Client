@@ -23,24 +23,6 @@ $(document).ready(function () {
   }
   });
 
-  // when 'support' is clicked than email opens with the address for "env.ADMIN_EMAIL"
-  // $('#support').click((e) => {
-  //   e.preventDefault();
-    
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: '/contact_us/mailto',
-  //     success: (res) => {
-  //       console.log(res);
-  //       alert('Message sent successfully');
-  //       window.location.href = '/contact-us';
-  //     },
-  //     error:(jqXHR, textStatus, errorThrown) => {
-  //       // alert(jqXHR.responseJSON.error); 
-  //     },
-  //   });
-  // });
-
   $('#submit').click((e) => {
     // validate inputs before sending request
     
@@ -70,7 +52,7 @@ $(document).ready(function () {
       success: (res) => {
         console.log(res);
         alert('Message sent successfully');
-        window.location.href = '/contact-us';
+        window.location.href = '/';
       },
       error:(jqXHR, textStatus, errorThrown) => {
         // alert(jqXHR.responseJSON.error); 
