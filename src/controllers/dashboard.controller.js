@@ -109,11 +109,11 @@ exports.getYearSymbolData = async function (req, res, next) {
 
 exports.addToFavorites = async function (req, res, next) {
   try {
-    const { token } = req.params;
+    const { uuid } = req.params;
     const { symbol } = req.body;
 
     const user = await User.findOneAndUpdate(
-      { token },
+      { token: uuid },
       { $addToSet: { favorites: symbol } },
       { new: true }
     );
@@ -130,11 +130,11 @@ exports.addToFavorites = async function (req, res, next) {
 
 exports.removeFromFavorites = async function (req, res, next) {
   try {
-    const { token } = req.params;
+    const { uuid } = req.params;
     const { symbol } = req.body
 
     const user = await User.findOneAndUpdate(
-      { token },
+      { token: uuid },
       { $pull: { favorites: symbol } },
       { new: true }
     );

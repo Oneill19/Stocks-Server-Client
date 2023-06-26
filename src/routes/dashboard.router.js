@@ -35,13 +35,13 @@ router.get('/year/:symbol', dashboardController.getYearSymbolData);
  * @method PATCH
  * @description add a symbol to favorites
  */
-router.patch('/favorites/add/:token', dashboardController.addToFavorites);
+router.patch('/favorites/add/:uuid', dashboardController.addToFavorites);
 
 /**
  * @route /dashboard/favorites/remove/:token
  * @method PATCH
  * @description remove symbol from favorites
  */
-router.patch('/favorites/remove/:token', dashboardController.removeFromFavorites);
+router.patch('/favorites/remove/:uuid', dashboardController.removeFromFavorites);
 
 module.exports = router;

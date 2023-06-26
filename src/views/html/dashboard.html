@@ -51,7 +51,7 @@
 
 				<!-- Nav Item - Dashboard -->
 				<li class="nav-item">
-					<a class="nav-link" href="index.html">
+					<a class="nav-link" href="/contact-us">
 						<i class="fa-regular fa-paper-plane"></i>
 						<span>Contact Us</span></a
 					>
@@ -61,9 +61,9 @@
 
 				<!-- Nav Item - Dashboard -->
 				<li class="nav-item">
-					<a class="nav-link" href="index.html">
+					<a class="nav-link" href="#" id="sign-out">
 						<i class="fa-solid fa-arrow-right-from-bracket"></i>
-						<span>Logout</span></a
+						<span>Sign Out</span></a
 					>
 				</li>
 
@@ -117,8 +117,8 @@
 									<thead>
 										<tr>
 											<th scope="col">Symbol</th>
-											<th scope="col">Show Daily</th>
-											<th scope="col">Show Monthly</th>
+											<th scope="col">Show Month Chart</th>
+											<th scope="col">Show Year Chart</th>
 											<th scope="col">Unfavorite</th>
 										</tr>
 									</thead>
@@ -131,6 +131,11 @@
 
 						<div class="container-fluid">
 							<h1>Stock Data Chart</h1>
+							<div id="spinner" class="text-center" style="display: none">
+								<div class="spinner-border" role="status">
+									<span class="visually-hidden">Loading...</span>
+								</div>
+							</div>
 							<div
 								id="button-container"
 								class="container-fluid d-flex justify-content-center"

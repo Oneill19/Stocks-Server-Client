@@ -46,7 +46,6 @@ $(document).ready(function () {
 });
 
 function createFavoritesTable() {
-  console.log('here');
   let favorites = sessionStorage.getItem('favorites');
   if (favorites) {
     favorites = JSON.parse(favorites);
@@ -54,8 +53,8 @@ function createFavoritesTable() {
     favorites.forEach(function (symbol) {
       let row = `<tr>
               <td>${symbol}</td>
-              <td><button class="btn btn-primary show-daily" data-symbol="${symbol}">Show Daily</button></td>
-              <td><button class="btn btn-primary show-monthly" data-symbol="${symbol}">Show Monthly</button></td>
+              <td><button class="btn btn-primary show-daily" data-symbol="${symbol}">Show Month Chart</button></td>
+              <td><button class="btn btn-primary show-monthly" data-symbol="${symbol}">Show Year Chart</button></td>
               <td><button class="btn btn-danger unfavorite" data-symbol="${symbol}">Unfavorite</button></td>
           </tr>`;
       tableBody.append(row);
@@ -64,6 +63,7 @@ function createFavoritesTable() {
 }
 
 function createSymbolChart(url, symbol) {
+  $('#spinner').show();
   $.ajax({
     url,
     type: 'GET',
@@ -104,7 +104,7 @@ function createSymbolChart(url, symbol) {
       // Check if the symbol is not in the favorites
       if (!favorites.includes(symbol)) {
         // Add the button to the button container
-        $('#button-container').empty().append('<button id="favorite-btn" class="btn btn-primary my-4">Add to Favorites</button>');
+        $('#button-container').empty().append('<button id="favorite-btn" class="btn btn-primary my-4 mx-2">Add to Favorites</button>');
 
         // Bind a click event handler to the button
         $('#favorite-btn').click(function () {
@@ -114,11 +114,45 @@ function createSymbolChart(url, symbol) {
         // If the symbol is already in the favorites, remove any existing button
         $('#button-container').empty();
       }
+
+      // Always add the 'Show Month Chart' and 'Show Year Chart' buttons
+      $('#button-container').append('<button id="month-chart-btn" class="btn btn-primary my-4 mx-2">Show Month Chart</button>');
+      $('#button-container').append('<button id="year-chart-btn" class="btn btn-primary my-4 mx-2">Show Year Chart</button>');
+
+      // Bind click event handlers to these buttons as well
+      $('#month-chart-btn').click(function () {
+        createSymbolChart(`/dashboard/month/${selectedSymbol}`, selectedSymbol);
+      });
+      $('#year-chart-btn').click(function () {
+        createSymbolChart(`/dashboard/year/${selectedSymbol}`, selectedSymbol);
+      });
+
+      $('#spinner').hide();
     },
     error: function (xhr, status, error) {
       window.alert('Symbol Not Found');
     }
   });
+}
+
+function addToFavorites() {
+  let symbol = selectedSymbol;
+  let favorites = sessionStorage.getItem('favorites');
+  if (favorites) {
+    $.ajax({
+      type: 'PATCH',
+      url: `/dashboard/favorites/add/${uuid}`,
+      data: { symbol: selectedSymbol },
+      success: (res) => {
+        favorites = JSON.parse(favorites);
+        favorites.push(symbol);
+        favorites = [...new Set(favorites)];
+        sessionStorage.setItem('favorites', JSON.stringify(favorites));
+        $('#favorites-table tbody').empty();
+        createFavoritesTable();
+      },
+    });
+  }
 }
 
 $(document).on('click', '.show-daily', function () {
@@ -133,21 +167,36 @@ $(document).on('click', '.show-monthly', function () {
   createSymbolChart(`/dashboard/year/${symbol}`, symbol);
 });
 
-function addToFavorites() {
-  let symbol = selectedSymbol;
-  let favorites = sessionStorage.getItem('favorites');
-  if (favorites) {
-    favorites = JSON.parse(favorites);
-    favorites.append(symbol);
-    favorites = [...new Set(favorites)];
-    sessionStorage.setItem('favorites', JSON.stringify(favorites));
-    $('#favorites-table tbody').empty();
-    createFavoritesTable();
-  }
-}
-
 $(document).on('click', '.unfavorite', function () {
   let symbol = $(this).data('symbol');
-  $('#favorites-table tbody').empty();
+  let favorites = sessionStorage.getItem('favorites');
+  $.ajax({
+    type: 'PATCH',
+    url: `/dashboard/favorites/remove/${uuid}`,
+    data: { symbol },
+    success: (res) => {
+      if (favorites) {
+        favorites = JSON.parse(favorites);
+        favorites = favorites.filter((stock) => stock !== symbol);
+        sessionStorage.setItem('favorites', JSON.stringify(favorites));
+        $('#favorites-table tbody').empty();
+        createFavoritesTable();
+      }
+    },
+  });
 });
+
+$('#sign-out').click((e) => {
+  e.preventDefault();
+  $.ajax({
+    type: 'POST',
+    url: '/sign-in/sign-out',
+    data: { token: uuid },
+    success: (res) => {
+      sessionStorage.removeItem('uuid');
+      document.cookie = 'uuid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      window.location.href = '/sign-in';
+    }
+  })
+})
 

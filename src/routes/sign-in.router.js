@@ -23,6 +23,14 @@ router.post('/', signInController.signIn);
  */
 router.post('/authenticate', signInController.authenticate);
 
+
+/**
+ * @route /sign-in/sign-out
+ * @method POST
+ * @description sign-out the user
+ */
+router.post('/sign-out', signInController.signOut);
+
 /**
  * postman registration for tests
  */

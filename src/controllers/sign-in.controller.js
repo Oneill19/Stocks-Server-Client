@@ -59,11 +59,11 @@ exports.authenticate = async function (req, res, next) {
 
 exports.signOut = async function (req, res, next) {
   try {
-    const { email, uuid } = req.body;
+    const { token } = req.body;
 
-    await User.updateOne({ email, token: uuid }, { $unset: { uuid: 1 } });
+    await User.updateOne({ token }, { $unset: { token: 1 } });
 
-    return res.res({ response: 'OK' });
+    return res.send({ response: 'OK' });
   } catch (err) {
     next(err);
   }
