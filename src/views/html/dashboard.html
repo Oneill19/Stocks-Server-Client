@@ -5,6 +5,19 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<!-- fonts and icons -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+			rel="stylesheet"
+		/>
+
 		<!-- favicon -->
 		<link type="image/png" sizes="32x32" rel="icon" href="views/assets/favicon.png" />
 
@@ -12,29 +25,160 @@
 		<link rel="stylesheet" href="views/css/bootstrap.min.css" />
 
 		<!-- template css file -->
-		<link rel="stylesheet" href="views/css/sb-admin-2.css">
+		<link rel="stylesheet" href="views/css/sb-admin-2.css" />
 
-    <!-- Style css file -->
-    <link rel="stylesheet" href="views/css/dashboard.css">
-		<title>dashboard</title>
+		<title>Dashboard</title>
 	</head>
-	<body>
-  
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <h1 class="text-center">I'm a dashboard!</h1>
-      <img src="views/assets/cat/rainbow-cat.jpg" alt="rainbow-cat"/>
-    </div>
+	<body id="page-top">
+		<div id="wrapper">
+			<!-- Sidebar -->
+			<ul
+				class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+				id="accordionSidebar"
+			>
+				<!-- Sidebar - Brand -->
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+					<div class="sidebar-brand-icon rotate-n-15">
+						<i class="fa-solid fa-arrow-trend-up"></i>
+					</div>
+					<div class="sidebar-brand-text mx-3">Stocks Dashboard</div>
+				</a>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider my-0" />
+
+				<!-- Nav Item - Dashboard -->
+				<li class="nav-item">
+					<a class="nav-link" href="/contact-us">
+						<i class="fa-regular fa-paper-plane"></i>
+						<span>Contact Us</span></a
+					>
+				</li>
+
+				<hr class="sidebar-divider" />
+
+				<!-- Nav Item - Dashboard -->
+				<li class="nav-item">
+					<a class="nav-link" href="#" id="sign-out">
+						<i class="fa-solid fa-arrow-right-from-bracket"></i>
+						<span>Sign Out</span></a
+					>
+				</li>
+
+				<hr class="sidebar-divider" />
+
+				<!-- Sidebar Toggler (Sidebar) -->
+				<div class="text-center d-none d-md-inline">
+					<button class="rounded-circle border-0" id="sidebarToggle"></button>
+				</div>
+			</ul>
+			<!-- End of Sidebar -->
+
+			<div id="content-wrapper" class="d-flex flex-column">
+				<div id="content">
+					<!-- Topbar -->
+					<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+						<!-- Sidebar Toggle (Topbar) -->
+						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- Topbar Search -->
+						<form
+							class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+						>
+							<div class="input-group">
+								<input
+									type="text"
+									id="symbol-input"
+									class="form-control bg-light border-0 small"
+									placeholder="Enter Symbol"
+									aria-label="Search"
+									aria-describedby="basic-addon2"
+								/>
+								<div class="input-group-append">
+									<button id="submit-button" class="btn btn-primary" type="button">
+										<i class="fas fa-search fa-sm"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</nav>
+					<!-- End of Topbar -->
+
+					<!-- Begin Page Content -->
+					<div class="container-fluid">
+						<div class="container-fluid">
+							<h1>Favorites Stocks Symbols</h1>
+							<div class="table-responsive">
+								<table class="table table-bordered" id="favorites-table">
+									<thead>
+										<tr>
+											<th scope="col">Symbol</th>
+											<th scope="col">Show Month Chart</th>
+											<th scope="col">Show Year Chart</th>
+											<th scope="col">Unfavorite</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+
+						<hr />
+
+						<div class="container-fluid">
+							<h1>Stock Data Chart</h1>
+							<div id="spinner" class="text-center" style="display: none">
+								<div class="spinner-border" role="status">
+									<span class="visually-hidden">Loading...</span>
+								</div>
+							</div>
+							<div
+								id="button-container"
+								class="container-fluid d-flex justify-content-center"
+							></div>
+							<div class="mb-4">
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- container-fluid -->
+				</div>
+				<!-- End of Main Content -->
+
+				<!-- Footer -->
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span
+								>Client Server Academic Course |
+								<a href="https://github.com/oneill19" target="_blank">Oneill Panker</a> &
+								<a href="https://github.com/dorinbe" target="_blank">Dorin Beery</a></span
+							>
+						</div>
+					</div>
+				</footer>
+				<!-- End of Footer -->
+			</div>
+			<!-- End of Content Wrapper -->
+		</div>
 
 		<!-- Bootstrap js file -->
 		<script src="views/javascript/bootstrap.bundle.min.js"></script>
 
-    <!-- jQuery js file -->
-    <script src="views/javascript/jquery-3.7.0.min.js"></script>
+		<!-- jQuery js file -->
+		<script src="views/javascript/jquery-3.7.0.min.js"></script>
 
 		<!-- template js file -->
 		<script src="views/javascript/sb-admin-2.js"></script>
 
-    <!-- Javascript file -->
-    <script src="views/javascript/dashboard.js"></script>
+		<!-- chartjs js file -->
+		<script src="views/javascript/chart.umd.min.js"></script>
+		<script src="views/javascript/date-fns.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+		<!-- Javascript file -->
+		<script src="views/javascript/dashboard.js"></script>
 	</body>
 </html>
