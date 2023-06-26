@@ -5,8 +5,6 @@ const bcrpyt = require('bcrypt');
 const viewFolder = require('../views/path').viewFolder;
 const User = require('../models/user');
 
-const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS) || 10;
-
 exports.getSignInPage = async function (req, res, next) {
   try {
     return res.sendFile(path.join(viewFolder + '/html/sign-in.html'));
@@ -52,37 +50,6 @@ exports.authenticate = async function (req, res, next) {
     }
 
     return res.send({ response: 'OK', email: user.email, favorites: user.favorites });
-  } catch (err) {
-    next(err);
-  }
-}
-
-exports.signOut = async function (req, res, next) {
-  try {
-    const { token } = req.body;
-
-    await User.updateOne({ token }, { $unset: { token: 1 } });
-
-    return res.send({ response: 'OK' });
-  } catch (err) {
-    next(err);
-  }
-}
-
-exports.register = async function (req, res, next) {
-  try {
-    // const { firstName, lastName, email, password } = req.body;
-
-    const firstName = 'Oneill';
-    const lastName = 'Panker';
-    const email = 'oneill@mail.com';
-    const password = 'Test!23';
-
-    const hashedPassword = await bcrpyt.hash(password, SALT_ROUNDS);
-
-    await User.create({ firstName, lastName, email: email.toLowerCase(), password: hashedPassword, favorites: [] });
-
-    return res.send({ response: 'OK' });
   } catch (err) {
     next(err);
   }

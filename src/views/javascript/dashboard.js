@@ -190,7 +190,7 @@ $('#sign-out').click((e) => {
   e.preventDefault();
   $.ajax({
     type: 'POST',
-    url: '/sign-in/sign-out',
+    url: '/sign-out',
     data: { token: uuid },
     success: (res) => {
       sessionStorage.removeItem('uuid');
