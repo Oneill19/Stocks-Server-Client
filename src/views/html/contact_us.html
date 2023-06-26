@@ -12,11 +12,12 @@
 		<link rel="stylesheet" href="views/css/bootstrap.min.css" />
 
 		<!-- template css file -->
-		<link rel="stylesheet" href="views/css/sb-admin-2.css" />
+		<link rel="stylesheet" href="views/css/sb-admin-2.css">
 
-		<!-- Style css file -->
-		<link rel="stylesheet" href="views/css/sign-in.css" />
-		<title>sign-in</title>
+    <!-- Style css file -->
+    <link rel="stylesheet" href="views/css/contact_us.css">
+
+		<title>contact_us</title>
 	</head>
 	<body class="bg-gradient-primary">
 		<div class="container">
@@ -36,35 +37,39 @@
 										<form class="user">
 											<div class="form-group">
 												<input
-													type="email"
+													type="text"
 													class="form-control form-control-user"
-													id="email"
-													aria-describedby="emailHelp"
-													placeholder="Enter Email Address..."
+													id="name"
+													placeholder="Enter your name"
 												/>
 											</div>
 											<div class="form-group">
-												<input
-													type="password"
-													class="form-control form-control-user"
-													id="password"
-													placeholder="Password"
+												<input 
+												type="email" 
+												class="form-control form-control-user" 
+												id="email"
+												placeholder="Email Address"
 												/>
 											</div>
-											<div class="form-group">
-												<div class="custom-control custom-checkbox small">
-													<input type="checkbox" class="custom-control-input" id="remember-me" />
-													<label class="custom-control-label" for="remember-me">Remember Me</label>
+											<!--implement here selection box-->
+											<div class="dropdown no-arrow mb-4">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Dropdown (no arrow)
+												</button>
+												<div class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
+													<a class="dropdown-item" href="#">Action</a>
+													<a class="dropdown-item" href="#">Another action</a>
+													<a class="dropdown-item" href="#">Something else here</a>
 												</div>
 											</div>
-											<a href="index.html" id="sign-in" class="btn btn-primary btn-user btn-block disabled"> Login </a>
-										</form>
-										<hr />
-										<div class="text-center">
-											<a class="small" href="/register">Create an Account!</a>
-											<br>
-											<a class="small" href="/contact_us">contact us</a>
-										</div>
+											<!--implement here combo box box-->
+											<div class="form-group">
+												<textarea
+													class="form-control form-control-user"
+													id="message"
+													placeholder="Message"
+												></textarea>
+											</div>
 									</div>
 								</div>
 							</div>
@@ -85,5 +90,6 @@
 
 		<!-- Javascript file -->
 		<script src="views/javascript/sign-in.js"></script>
+
 	</body>
 </html>

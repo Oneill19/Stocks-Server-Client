@@ -10,6 +10,7 @@ const errorHandler = require('./controllers/error.controller').errorHandle;
 // middlewares
 const signIn = require('./routes/sign-in.router');
 const register = require('./routes/register.router');
+const contact_us = require('./routes/contact_us.router');
 const dashboard = require('./routes/dashboard.router');
 const cat = require('./routes/cat.router');
 const error = require('./routes/error.router');
@@ -60,6 +61,9 @@ app.use('/sign-in', signIn);
 
 // register middleware
 app.use('/register', register);
+
+// register middleware
+app.use('/contact_us', contact_us);
 
 // dashboard middleware
 app.use('/dashboard', dashboard);
