@@ -10,6 +10,13 @@ const dashboardController = require('../controllers/dashboard.controller');
 router.get('/', dashboardController.getDashboardPage);
 
 /**
+ * @route /dashboard/favorites
+ * @method GET
+ * @description get the favorites object array
+ */
+router.get('/favorites', dashboardController.getSymbolsData);
+
+/**
  * @route /dashboard/day/:symbol
  * @method GET
  * @description get info about a symbol of the day

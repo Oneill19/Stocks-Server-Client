@@ -48,19 +48,33 @@ $(document).ready(function () {
 
 function createFavoritesTable() {
   let favorites = sessionStorage.getItem('favorites');
+  $('.table-responsive').hide();
+  $('#spinner-table').show();
   if (favorites) {
-    favorites = JSON.parse(favorites);
-    let tableBody = $('#favorites-table tbody');
-    favorites.forEach(function (symbol) {
-      let row = `<tr>
-              <td>${symbol}</td>
-              <td><button class="btn btn-primary show-daily" data-symbol="${symbol}">Show Last Day Chart</button></td>
-              <td><button class="btn btn-primary show-monthly" data-symbol="${symbol}">Show Month Chart</button></td>
-              <td><button class="btn btn-primary show-yearly" data-symbol="${symbol}">Show Year Chart</button></td>
-              <td><button class="btn btn-danger unfavorite" data-symbol="${symbol}">Unfavorite</button></td>
-          </tr>`;
-      tableBody.append(row);
+    $.ajax({
+      type: 'GET',
+      url: '/dashboard/favorites',
+      data: { favorites },
+      success: (res) => {
+        let tableBody = $('#favorites-table tbody');
+        res.favorites.forEach(function (stock) {
+          let row = `<tr>
+                  <td>${stock.symbol}</td>
+                  <td>${parseFloat(stock.stockPrice).toFixed(2)}$</td>
+                  <td class="${stock.change.startsWith('-') ? 'red-text' : 'green-text'}">${stock.change}</td>
+                  <td><button class="btn btn-primary show-daily" data-symbol="${stock.symbol}">Show Charts</button></td>
+                  <td><button class="btn btn-danger unfavorite" data-symbol="${stock.symbol}">Unfavorite</button></td>
+              </tr>`;
+          tableBody.append(row);
+        });
+        $('.table-responsive').show();
+        $('#spinner-table').hide();
+      },
+      error: (err) => {
+        window.alert('Error in fetching favorites data');
+      }
     });
+
   }
 }
 
@@ -123,6 +137,8 @@ function createHourChart(symbol, response) {
 
 function createSymbolChart(url, symbol, chartFunc) {
   $('#spinner').show();
+  $('#chart-div').hide();
+  $('#button-container').removeClass('d-flex').hide();
   $.ajax({
     url,
     type: 'GET',
@@ -139,7 +155,7 @@ function createSymbolChart(url, symbol, chartFunc) {
       // Check if the symbol is not in the favorites
       if (!favorites.includes(symbol)) {
         // Add the button to the button container
-        $('#button-container').empty().append('<button id="favorite-btn" class="btn btn-primary my-4 mx-2">Add to Favorites</button>');
+        $('#button-container').empty().append('<button id="favorite-btn" class="btn btn-success my-4 mx-2">Add to Favorites</button>');
 
         // Bind a click event handler to the button
         $('#favorite-btn').click(function () {
@@ -152,22 +168,33 @@ function createSymbolChart(url, symbol, chartFunc) {
       }
 
       // Always add the 'Show Month Chart' and 'Show Year Chart' buttons
-      $('#button-container').append('<button id="day-chart-btn" class="btn btn-primary my-4 mx-2">Show Last Day Chart</button>');
+      $('#button-container').append('<button id="day-chart-btn" class="btn btn-primary my-4 mx-2 disabled">Show Last Day Chart</button>');
       $('#button-container').append('<button id="month-chart-btn" class="btn btn-primary my-4 mx-2">Show Month Chart</button>');
       $('#button-container').append('<button id="year-chart-btn" class="btn btn-primary my-4 mx-2">Show Year Chart</button>');
 
       // Bind click event handlers to these buttons as well
       $('#day-chart-btn').click(function () {
         createSymbolChart(`/dashboard/day/${selectedSymbol}`, selectedSymbol, createHourChart);
+        $('#day-chart-btn').addClass('disabled');
+        $('#month-chart-btn').removeClass('disabled');
+        $('#year-chart-btn').removeClass('disabled');
       });
       $('#month-chart-btn').click(function () {
         createSymbolChart(`/dashboard/month/${selectedSymbol}`, selectedSymbol, createDayChart);
+        $('#day-chart-btn').removeClass('disabled');
+        $('#month-chart-btn').addClass('disabled');
+        $('#year-chart-btn').removeClass('disabled');
       });
       $('#year-chart-btn').click(function () {
         createSymbolChart(`/dashboard/year/${selectedSymbol}`, selectedSymbol, createDayChart);
+        $('#day-chart-btn').removeClass('disabled');
+        $('#month-chart-btn').removeClass('disabled');
+        $('#year-chart-btn').addClass('disabled');
       });
 
       $('#spinner').hide();
+      $('#chart-div').show();
+      $('#button-container').addClass('d-flex').show();
     },
     error: function (xhr, status, error) {
       window.alert('Symbol Not Found');
@@ -179,18 +206,6 @@ $(document).on('click', '.show-daily', function () {
   let symbol = $(this).data('symbol');
   selectedSymbol = symbol;
   createSymbolChart(`/dashboard/day/${symbol}`, symbol, createHourChart);
-});
-
-$(document).on('click', '.show-monthly', function () {
-  let symbol = $(this).data('symbol');
-  selectedSymbol = symbol;
-  createSymbolChart(`/dashboard/month/${symbol}`, symbol, createDayChart);
-});
-
-$(document).on('click', '.show-yearly', function () {
-  let symbol = $(this).data('symbol');
-  selectedSymbol = symbol;
-  createSymbolChart(`/dashboard/year/${symbol}`, symbol, createDayChart);
 });
 
 // favorite functionality

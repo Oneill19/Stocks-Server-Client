@@ -5,6 +5,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<style>
+			.red-text {
+				color: red;
+			}
+
+			.green-text {
+				color: green;
+			}
+		</style>
+
 		<!-- fonts and icons -->
 		<link
 			rel="stylesheet"
@@ -29,7 +39,7 @@
 
 		<title>Dashboard</title>
 	</head>
-	<body id="page-top" style="display: none;">
+	<body id="page-top" style="display: none">
 		<div id="wrapper">
 			<!-- Sidebar -->
 			<ul
@@ -110,14 +120,19 @@
 					<div class="container-fluid">
 						<div class="container-fluid">
 							<h1>Favorites Stocks Symbols</h1>
-							<div class="table-responsive">
+							<div id="spinner-table" class="text-center">
+								<div class="spinner-border" role="status">
+									<span class="visually-hidden">Loading...</span>
+								</div>
+							</div>
+							<div class="table-responsive" style="display: none;">
 								<table class="table table-bordered" id="favorites-table">
 									<thead>
 										<tr>
 											<th scope="col">Symbol</th>
-											<th scope="col">Show Day Chart</th>
-											<th scope="col">Show Month Chart</th>
-											<th scope="col">Show Year Chart</th>
+											<th scope="col">Stock Price</th>
+											<th scope="col">Price Change</th>
+											<th scope="col">Charts</th>
 											<th scope="col">Unfavorite</th>
 										</tr>
 									</thead>
@@ -139,7 +154,7 @@
 								id="button-container"
 								class="container-fluid d-flex justify-content-center"
 							></div>
-							<div class="mb-4">
+							<div id="chart-div" class="mb-4">
 								<canvas id="myChart"></canvas>
 							</div>
 						</div>

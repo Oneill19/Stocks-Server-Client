@@ -14,6 +14,34 @@ exports.getDashboardPage = async function (req, res, next) {
   }
 }
 
+exports.getSymbolsData = async function (req, res, next) {
+  try {
+    const favorites = JSON.parse(req.query.favorites);
+
+    if (!favorites) {
+      return res.json({ favorites: [] });
+    }
+
+    
+    const promises = favorites.map(async (symbol) => {
+      const response = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`);
+      const data = response.data['Global Quote'];
+
+      return {
+        symbol: data['01. symbol'],
+        stockPrice: data['05. price'],
+        change: data['10. change percent'],
+      };
+    });
+
+    const result = await Promise.all(promises);
+
+    return res.json({ favorites: result });
+  } catch (err) {
+    next(err);
+  }
+}
+
 exports.getDaySymbolData = async function (req, res, next) {
   try {
     const { symbol } = req.params;
