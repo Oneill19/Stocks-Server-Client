@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: 'POST',
-      url: '/contact_us',
+      url: '/contact-us',
       data: {
         name: name,
         email: email,

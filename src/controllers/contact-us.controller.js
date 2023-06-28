@@ -3,9 +3,9 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 require('dotenv').config()
 
-exports.getContact_usPage = async function (req, res, next) {
+exports.getContactUsPage = async function (req, res, next) {
   try {
-    return res.sendFile(path.join(viewFolder + '/html/contact_us.html'));
+    return res.sendFile(path.join(viewFolder + '/html/contact-us.html'));
   } catch (err) {
     next(err);
   }

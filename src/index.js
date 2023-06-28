@@ -11,7 +11,7 @@ const errorHandler = require('./controllers/error.controller').errorHandle;
 const signIn = require('./routes/sign-in.router');
 const signOut = require('./routes/sign-out.router');
 const register = require('./routes/register.router');
-const contact_us = require('./routes/contact_us.router');
+const contactUs = require('./routes/contact-us.router');
 const dashboard = require('./routes/dashboard.router');
 const cat = require('./routes/cat.router');
 const error = require('./routes/error.router');
@@ -67,7 +67,7 @@ app.use('/sign-out', signOut);
 app.use('/register', register);
 
 // register middleware
-app.use('/contact_us', contact_us);
+app.use('/contact-us', contactUs);
 
 // dashboard middleware
 app.use('/dashboard', dashboard);

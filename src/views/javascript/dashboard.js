@@ -1,5 +1,9 @@
 const uuid = getUUID();
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 if (uuid) {
   $.ajax({
     type: 'POST',
@@ -36,8 +40,11 @@ let chart;
 let selectedSymbol;
 
 $(document).ready(function () {
-  createFavoritesTable();
   ctx = document.getElementById('myChart').getContext('2d');
+  
+  setTimeout(function () {
+    createFavoritesTable();
+  }, 2000);
 
   $('#submit-button').click(function () {
     let symbol = $('#symbol-input').val();
