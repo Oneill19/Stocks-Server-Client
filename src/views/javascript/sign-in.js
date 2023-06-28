@@ -10,9 +10,16 @@ if (uuid) {
         sessionStorage.setItem('email', res.email);
         sessionStorage.setItem('favorites', res.favorites);
         window.location.href = '/dashboard';
+      } else {
+        $('body').show();
       }
     },
+    error: (err) => {
+      $('body').show();
+    }
   });
+} else {
+  $('body').show();
 }
 
 function getUUID() {

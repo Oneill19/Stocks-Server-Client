@@ -24,10 +24,16 @@ exports.getDaySymbolData = async function (req, res, next) {
     const data = response.data;
     const timeSeries = data['Time Series (60min)'];
 
-    let today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(0, 0, 0, 0);
 
-    const dates = Object.keys(timeSeries);
+    let dates = Object.keys(timeSeries);
+    dates = dates.filter(date => {
+      const dateObj = new Date(date.replace(' ', 'T'));
+      return dateObj >= yesterday && dateObj < today;
+    });
     const prices = dates.map(date => timeSeries[date]['4. close']);
 
     // reverse the arrays to make the oldest date first
