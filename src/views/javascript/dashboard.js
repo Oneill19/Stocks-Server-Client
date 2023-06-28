@@ -199,7 +199,6 @@ function createSymbolChart(url, symbol, chartFunc) {
         $('#year-chart-btn').addClass('disabled');
       });
 
-      $('#spinner').hide();
       $('#chart-div').show();
       $('#button-container').addClass('d-flex').show();
     },
@@ -207,6 +206,7 @@ function createSymbolChart(url, symbol, chartFunc) {
       window.alert('Symbol Not Found');
     }
   });
+  $('#spinner').hide();
 }
 
 $(document).on('click', '.show-daily', function () {
