@@ -4,7 +4,7 @@ const path = require('path');
 const args = process.argv.slice(2); // Get arguments
 
 if (args.length !== 1) {
-	console.log("Please provide a name as an argument.");
+	console.log('Please provide a name as an argument.');
 	process.exit(-1);
 }
 
@@ -75,14 +75,14 @@ async function linkRoutes() {
 
 		// Add new router import
 		let result = data.replace(
-			"const cat = require('./routes/cat.router');",
-			`const ${camelCaseName} = require('./routes/${name}.router');\nconst cat = require('./routes/cat.router');`
+			`const cat = require('./routes/cat.router');`,
+			`const ${camelCaseName} = require('./routes/${name}.router');\nconst error = require('./routes/error.router');`
 		);
 
 		// Add new router usage
 		result = result.replace(
-			"// cat middlewares",
-			`// ${name} middleware\napp.use('/${name}', ${camelCaseName});\n\n// cat middlewares`
+			'// error middlewares',
+			`// ${name} middleware\napp.use('/${name}', ${camelCaseName});\n\n// error middlewares`
 		);
 
 		await fs.writeFile(filename, result, 'utf8');

@@ -13,7 +13,6 @@ const signOut = require('./routes/sign-out.router');
 const register = require('./routes/register.router');
 const contactUs = require('./routes/contact-us.router');
 const dashboard = require('./routes/dashboard.router');
-const cat = require('./routes/cat.router');
 const error = require('./routes/error.router');
 
 const app = express();
@@ -71,9 +70,6 @@ app.use('/contact-us', contactUs);
 
 // dashboard middleware
 app.use('/dashboard', dashboard);
-
-// cat middlewares
-app.use('/cat', cat);
 
 // error middlewares
 app.use('/error', error);
