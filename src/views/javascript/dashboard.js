@@ -1,9 +1,5 @@
 const uuid = getUUID();
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 if (uuid) {
   $.ajax({
     type: 'POST',
@@ -44,12 +40,12 @@ $(document).ready(function () {
   
   setTimeout(function () {
     createFavoritesTable();
-  }, 2000);
+  }, 1200);
 
   $('#submit-button').click(function () {
     let symbol = $('#symbol-input').val();
     selectedSymbol = symbol;
-    createSymbolChart(`/dashboard/day/${symbol}`, symbol, createHourChart);
+    createSymbolChart(`/dashboard/day/${symbol}`, symbol, createHourChart, 'Last Day Chart');
   });
 });
 
@@ -85,7 +81,7 @@ function createFavoritesTable() {
   }
 }
 
-function createDayChart(symbol, response) {
+function createDayChart(symbol, response, title) {
   chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -97,6 +93,12 @@ function createDayChart(symbol, response) {
       }]
     },
     options: {
+      plugins: {
+        title: {
+          display: true,
+          text: title,
+        },
+      },
       responsive: true,
       scales: {
         x: {
@@ -113,7 +115,7 @@ function createDayChart(symbol, response) {
   });
 }
 
-function createHourChart(symbol, response) {
+function createHourChart(symbol, response, title) {
   chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -125,6 +127,12 @@ function createHourChart(symbol, response) {
       }]
     },
     options: {
+      plugins: {
+        title: {
+          display: true,
+          text: title,
+        },
+      },
       responsive: true,
       scales: {
         x: {
@@ -142,7 +150,7 @@ function createHourChart(symbol, response) {
 }
 
 
-function createSymbolChart(url, symbol, chartFunc) {
+function createSymbolChart(url, symbol, chartFunc, title) {
   $('#spinner').show();
   $('#chart-div').hide();
   $('#button-container').removeClass('d-flex').hide();
@@ -154,7 +162,7 @@ function createSymbolChart(url, symbol, chartFunc) {
         chart.destroy()
       };
 
-      chartFunc(symbol, response);
+      chartFunc(symbol, response, title);
 
       // Retrieve the favorites from the session storage
       let favorites = JSON.parse(sessionStorage.getItem('favorites')) || [];
@@ -175,28 +183,19 @@ function createSymbolChart(url, symbol, chartFunc) {
       }
 
       // Always add the 'Show Month Chart' and 'Show Year Chart' buttons
-      $('#button-container').append('<button id="day-chart-btn" class="btn btn-primary my-4 mx-2 disabled">Show Last Day Chart</button>');
+      $('#button-container').append('<button id="day-chart-btn" class="btn btn-primary my-4 mx-2    ">Show Last Day Chart</button>');
       $('#button-container').append('<button id="month-chart-btn" class="btn btn-primary my-4 mx-2">Show Month Chart</button>');
       $('#button-container').append('<button id="year-chart-btn" class="btn btn-primary my-4 mx-2">Show Year Chart</button>');
 
       // Bind click event handlers to these buttons as well
       $('#day-chart-btn').click(function () {
-        createSymbolChart(`/dashboard/day/${selectedSymbol}`, selectedSymbol, createHourChart);
-        $('#day-chart-btn').addClass('disabled');
-        $('#month-chart-btn').removeClass('disabled');
-        $('#year-chart-btn').removeClass('disabled');
+        createSymbolChart(`/dashboard/day/${selectedSymbol}`, selectedSymbol, createHourChart, 'Last Day Chart');
       });
       $('#month-chart-btn').click(function () {
-        createSymbolChart(`/dashboard/month/${selectedSymbol}`, selectedSymbol, createDayChart);
-        $('#day-chart-btn').removeClass('disabled');
-        $('#month-chart-btn').addClass('disabled');
-        $('#year-chart-btn').removeClass('disabled');
+        createSymbolChart(`/dashboard/month/${selectedSymbol}`, selectedSymbol, createDayChart, 'Monthly Chart');
       });
       $('#year-chart-btn').click(function () {
-        createSymbolChart(`/dashboard/year/${selectedSymbol}`, selectedSymbol, createDayChart);
-        $('#day-chart-btn').removeClass('disabled');
-        $('#month-chart-btn').removeClass('disabled');
-        $('#year-chart-btn').addClass('disabled');
+        createSymbolChart(`/dashboard/year/${selectedSymbol}`, selectedSymbol, createDayChart, 'Yearly Chart');
       });
 
       $('#chart-div').show();
@@ -212,7 +211,7 @@ function createSymbolChart(url, symbol, chartFunc) {
 $(document).on('click', '.show-daily', function () {
   let symbol = $(this).data('symbol');
   selectedSymbol = symbol;
-  createSymbolChart(`/dashboard/day/${symbol}`, symbol, createHourChart);
+  createSymbolChart(`/dashboard/day/${symbol}`, symbol, createHourChart, 'Last Day Chart');
 });
 
 // favorite functionality
