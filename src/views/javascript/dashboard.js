@@ -9,6 +9,7 @@ if (uuid) {
       if (res.response === 'OK') {
         sessionStorage.setItem('email', res.email);
         sessionStorage.setItem('favorites', JSON.stringify(res.favorites));
+        createFavoritesTable();
         $('body').show();
       } else {
         window.location.href = '/sign-in';
@@ -37,10 +38,6 @@ let selectedSymbol;
 
 $(document).ready(function () {
   ctx = document.getElementById('myChart').getContext('2d');
-  
-  setTimeout(function () {
-    createFavoritesTable();
-  }, 1200);
 
   $('#submit-button').click(function () {
     let symbol = $('#symbol-input').val();
@@ -183,7 +180,7 @@ function createSymbolChart(url, symbol, chartFunc, title) {
       }
 
       // Always add the 'Show Month Chart' and 'Show Year Chart' buttons
-      $('#button-container').append('<button id="day-chart-btn" class="btn btn-primary my-4 mx-2    ">Show Last Day Chart</button>');
+      $('#button-container').append('<button id="day-chart-btn" class="btn btn-primary my-4 mx-2">Show Last Day Chart</button>');
       $('#button-container').append('<button id="month-chart-btn" class="btn btn-primary my-4 mx-2">Show Month Chart</button>');
       $('#button-container').append('<button id="year-chart-btn" class="btn btn-primary my-4 mx-2">Show Year Chart</button>');
 
