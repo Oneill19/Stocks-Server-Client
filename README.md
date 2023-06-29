@@ -23,11 +23,13 @@
   - [Database](#database)
 
 ## Description
+
 Stocks server client application made in server-client academic course.
 
 In the app we use the [Alpha Vantage API](https://www.alphavantage.co/) to get the data about the stocks.
 
 Some of the features of the app:
+
 - login
 - registration
 - contact-us
@@ -45,26 +47,30 @@ The application built using a bootstrap template: [startbootstrap-sb-admin-2](ht
 ## Usage
 
 Clone the repository:
+
 ```
 git clone https://github.com/Oneill19/Stocks-Server-Client.git
 ```
 
 Install Dependencies:
+
 ```
 npm i
 ```
 
 To start the app:
+
 ```
 npm start
 ```
 
 To start the app in developer mode with hot reload:
+
 ```
 npm run dev
 ```
 
-Dont forget you .env file or the app won't work!
+Dont forget your .env file or the app won't work!
 
 ## Page Generation
 
@@ -77,17 +83,19 @@ This will generate the frontend and the backend to add a new page to the applica
 **index.js**: Generate a link to the page `router.js` file.
 
 For example, use the command:
+
 ```
 npm run generate login
 ```
 
 This command will create:
-  - `login.html`, `login.css`, and `login.js` files in the `views` folder.
-  - `login.controller.js`, `login.router.js` files in the `controllers` and `routes` folders.
-  - add the route link to the new page in the `index.js` file.
 
+- `login.html`, `login.css`, and `login.js` files in the `views` folder.
+- `login.controller.js`, `login.router.js` files in the `controllers` and `routes` folders.
+- add the route link to the new page in the `index.js` file.
 
 ## .env file
+
 Create a file in the root folder named `.env`
 
 ```
@@ -102,6 +110,7 @@ ADMIN_PASSWORD=YOUR_GMAIL_PASSWORD_OR_KEY
 ## Technologies
 
 ### Frontend
+
 - **HTML5** - Used to create the structure of the pages
 - **CSS3** - Used to style the html pages to have a slick look
 - **Bootstrap** - CSS framework that have pre-made components and make the design responsive
@@ -109,9 +118,11 @@ ADMIN_PASSWORD=YOUR_GMAIL_PASSWORD_OR_KEY
 - **jQuery** - JavaScript library to ease the use of it
 
 ### Backend
+
 - **Node.js** - JavaScript runtime for the backend
 - **Express.js** - Javascript backend framework, to handle the request, get data from API, user logic and authetication
 
 ### Database
+
 - **MongoDB** - NoSQL database to handle our users data
 - **Mongoose** - Library to ease the use of MongoDB operations
